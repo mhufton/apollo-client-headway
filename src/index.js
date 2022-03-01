@@ -1,3 +1,4 @@
+import { StrictMode } from "react/cjs/react.production.min";
 import ReactDOM from "react-dom";
 import App from "./App";
 import {
@@ -7,16 +8,18 @@ import {
   useQuery,
   gql
 } from "@apollo/client";
+import Test from "./Components/Test";
 
 const client = new ApolloClient({
-  uri: "https://zpf7x0.sse.codesandbox.io/",
+  uri: "http://localhost:4000/",
   cache: new InMemoryCache()
 });
 
+
 const rootElement = document.getElementById("root");
 ReactDOM.render(
-  <ApolloClient client={client}>
-    <App />
-  </ApolloClient>,
+    <ApolloProvider client={client} >
+      <App client={client} />
+    </ApolloProvider>,
   rootElement
 );
